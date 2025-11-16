@@ -3,88 +3,115 @@
 }
 
 body {
-  font-family: sans-serif;
-  margin: 20px;
+  margin: 0;
   padding: 0;
+  font-family: 'VT323', monospace;
+  color: white;
 }
 
-h1 {
+/* Background avec opacité */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/background.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.85;
+  z-index: -1;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-code {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-inline-start: 20px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
   text-align: center;
-  width: 34px;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
-}
+h1 { font-size: 26px; }
 
-.status {
-  margin-bottom: 10px;
-}
+/* Disposition du jeu */
 .game {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  gap: 40px;
 }
 
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Status en haut du plateau */
+.status {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+}
+
+/* Plateau */
+.board-row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Cases */
+.square {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000;
+  float: left;
+  width: 80px;
+  height: 80px;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 80px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Empêche l'effet au hover sur une case */
+.square:hover {
+  transform: none;
+  background: #ffffff;
+}
+
+/* Boutons d'historique */
 .game-info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-info ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Boutons  */
+.game-info button {
+  background: none;
+  border: none;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+/* Empêche l'effet au hover sur un bouton d'historique */
+.game-info button:hover {
+  background: none;
+  border: none;
+  color: white;
 }
