@@ -36,8 +36,22 @@ function Game() {
     return(
         <div className="game">
             <div className="game-board">
-                <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                <Board 
+                    xIsNext={xIsNext} 
+                    squares={currentSquares} 
+                    onPlay={handlePlay} 
+                />
+                <button 
+                    className="restart-btn"
+                    onClick={() => {
+                        setHistory([Array(9).fill(null)]);
+                        setCurrentMove(0);
+                    }}
+                >
+                    Rejouer la partie
+                </button>
             </div>
+
             <div className="game-info">
                 <ol>{moves}</ol>
             </div>

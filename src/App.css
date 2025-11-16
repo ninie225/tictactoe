@@ -9,7 +9,6 @@ body {
   color: white;
 }
 
-/* Background avec opacité */
 body::before {
   content: "";
   position: fixed;
@@ -30,10 +29,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   text-align: center;
 }
-
 h1 { font-size: 26px; }
 
-/* Disposition du jeu */
+/* Jeu */
 .game {
   display: flex;
   justify-content: center;
@@ -48,23 +46,101 @@ h1 { font-size: 26px; }
   align-items: center;
 }
 
-/* Status en haut du plateau */
+/* Statut */
+
 .status {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: white;
   text-align: center;
+  position: relative;
+  color: white;
 }
 
-/* Plateau */
+/* Texte si joueur gagnant */
+.winner-text {
+  position: relative;
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffd93b;
+  image-rendering: pixelated;
+
+  text-shadow:
+    -3px -3px 0 #5c3b1e,
+     3px -3px 0 #5c3b1e,
+    -3px  3px 0 #5c3b1e,
+     3px  3px 0 #5c3b1e,
+     0px -3px 0 #5c3b1e,
+     0px  3px 0 #5c3b1e,
+    -3px  0px 0 #5c3b1e,
+     3px  0px 0 #5c3b1e;
+}
+
+/* Etoiles */
+/* Croix pixel art */
+.star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  image-rendering: pixelated;
+
+  box-shadow:
+    -8px 0 0 currentColor,
+     8px 0 0 currentColor,
+     0 -8px 0 currentColor,
+     0  8px 0 currentColor;
+}
+
+/* Étincelles carrées (petites étoiles) */
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  image-rendering: pixelated;
+
+  box-shadow:
+    0 0 3px rgba(255,255,255,0.4),
+    0 0 6px rgba(255,255,200,0.3);
+}
+
+/* Couleurs des étoiles */
+.yellow { color: #ffe88c; }
+.white  { color: #ffffff; }
+
+/* Positions étoiles autour du texte winner */
+/* Haut gauche */
+.starA  { top: -28px; left: 50%; transform: translateX(-140px); }
+.sparkA { top: -12px; left: 50%; transform: translateX(-115px); }
+
+/* Haut droite */
+.starB  { top: -28px; left: 50%; transform: translateX(140px); }
+.sparkB { top: -12px; left: 50%; transform: translateX(115px); }
+
+/* Milieu gauche */
+.starC  { top: 5px; left: 50%; transform: translateX(-160px); }
+.sparkC { top: 25px; left: 50%; transform: translateX(-130px); }
+
+/* Milieu droite */
+.starD  { top: 5px; left: 50%; transform: translateX(160px); }
+.sparkD { top: 25px; left: 50%; transform: translateX(130px); }
+
+/* Bas gauche */
+.starE  { top: 50px; left: 50%; transform: translateX(-120px); }
+.sparkE { top: 75px; left: 50%; transform: translateX(-95px); }
+
+/* Bas droite */
+.starF  { top: 50px; left: 50%; transform: translateX(120px); }
+.sparkF { top: 75px; left: 50%; transform: translateX(95px); }
+
+/* Plateau du jeu */
 .board-row::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Cases */
 .square {
   background: #ffffff;
   color: #000000;
@@ -80,13 +156,12 @@ h1 { font-size: 26px; }
   padding: 0;
 }
 
-/* Empêche l'effet au hover sur une case */
 .square:hover {
   transform: none;
   background: #ffffff;
 }
 
-/* Boutons d'historique */
+/* Historique du jeu */
 .game-info {
   display: flex;
   flex-direction: column;
@@ -98,7 +173,6 @@ h1 { font-size: 26px; }
   list-style: none;
 }
 
-/* Boutons  */
 .game-info button {
   background: none;
   border: none;
@@ -109,9 +183,36 @@ h1 { font-size: 26px; }
   cursor: pointer;
 }
 
-/* Empêche l'effet au hover sur un bouton d'historique */
 .game-info button:hover {
   background: none;
-  border: none;
   color: white;
+}
+
+/* Bouton restart */
+.restart-btn {
+  margin-top: 20px;
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: #5c3b1e;
+
+  background-image: url("assets/parchemin.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+
+  width: 270px;
+  height: 120px;
+
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restart-btn:hover {
+  background-image: url("assets/parchemin.png");
+  color: #5c3b1e;
 }

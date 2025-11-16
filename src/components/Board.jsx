@@ -17,8 +17,11 @@ function Board({xIsNext, squares, onPlay}) {
         onPlay(nextSquares)
     }
 
-    const winner = calculateWinner(squares);
+    const result = calculateWinner(squares);
+    const winner = result?.winner;
+    const winningLine= result?.line || []
     const isDraw= !winner && squares.every(square => square!==null)
+
     let status;
     if (winner) {
         status = winner + " a gagné !";
@@ -32,7 +35,34 @@ function Board({xIsNext, squares, onPlay}) {
 
     return(
         <>
-            <div className="status">{status}</div>
+            <div className={`status ${winner ? "winner-text" : ""}`}>
+                {status}
+
+                {winner && (
+                <>
+                    {/* Haut */}
+                    <span className="star yellow starA"></span>
+                    <span className="spark white sparkA"></span>
+
+                    <span className="star yellow starB"></span>
+                    <span className="spark white sparkB"></span>
+
+                    {/* Milieu */}
+                    <span className="star white starC"></span>
+                    <span className="spark yellow sparkC"></span>
+
+                    <span className="star white starD"></span>
+                    <span className="spark yellow sparkD"></span>
+
+                    {/* Bas */}
+                    <span className="star yellow starE"></span>
+                    <span className="spark white sparkE"></span>
+
+                    <span className="star yellow starF"></span>
+                    <span className="spark white sparkF"></span>
+                </>
+                )}
+            </div>
             <div className="board-row">
                 <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
                 <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
